@@ -10,7 +10,7 @@
 nav {
   display: flex;
   padding: 1rem;
-
+  border-bottom: cyan 3px solid;
   background-color: #282c34;
   width: 100vw;
   padding-left: 2%;
@@ -26,6 +26,16 @@ a {
 a:hover {
   background-color: cadetblue;
 }
+
+.searchBar {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  border: 2px solid grey;
+  margin: 10px;
+  padding: 10px;
+}
+
 
 .App {
   text-align: center;
