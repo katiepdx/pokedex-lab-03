@@ -1,3 +1,32 @@
+.headerBar {
+  background-color: rgba(0, 0, 0, 0.562);
+  color: rgb(176, 235, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  display: flex;
+  padding: 1rem;
+
+  background-color: #282c34;
+  width: 100vw;
+  padding-left: 2%;
+  justify-content: start;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+a:hover {
+  background-color: cadetblue;
+}
+
 .App {
   text-align: center;
 }
