@@ -14,8 +14,8 @@ nav {
   border-bottom: cyan 3px solid;
   background-color: #282c34;
   width: 100vw;
-  padding-left: 2%;
-  justify-content: start;
+  padding-right: 20%;
+  justify-content: flex-end;
 }
 
 a {
@@ -31,16 +31,19 @@ a:hover {
 .searchBar {
   display: flex;
   flex-direction: column;
-  width: 30%;
-  border: 2px solid grey;
+  width: min-content;
   margin: 10px;
   padding: 10px;
 }
 
+img {
+  height: 150px;
+  width: 150px;
+}
 
 .App {
   text-align: center;
-  
+
 }
 
 .App-logo {
