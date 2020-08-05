@@ -5,6 +5,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 15vh;
 }
 
 nav {
@@ -39,6 +40,7 @@ a:hover {
 
 .App {
   text-align: center;
+  
 }
 
 .App-logo {
