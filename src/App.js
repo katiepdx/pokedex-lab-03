@@ -28,7 +28,6 @@ export default class App extends React.Component {
     })
 
     console.log(this.state.pokemonStats)
-    console.log(this.state.userSearch)
   }
 
   render() {
@@ -38,16 +37,21 @@ export default class App extends React.Component {
         <div className="userSearchInput">
           <div className="searchBar">
             {/* When user types into searchBar, update the search in state to the value of input */}
-            <SearchBar onChange={(e) => this.setState({ userSearch: e.target.value})}/>
+            <input onChange={(e) => this.setState({ userSearch: e.target.value })} type="text"></input>
 
             {/* When button is clicked, use handleClick function to get the Pokemon */}
             <button onClick={this.handleClick}>Get Pokemon</button>
           </div>
-        </div>
-        <div className="displayPokemon">
-          {
-            this.state.pokemonStats.map(onePokemon => <img src={onePokemon.url_image} alt={onePokemon.pokemon}/>)
-          }
+          <div className="displayPokemon">
+            {
+              //if in state page loading is true
+              this.state.isLoading
+                //displaying LOADING
+                ? <h1>LOADING</h1>
+                //else display the pokemon the user searched for
+                : this.state.pokemonStats.map(onePokemon => <img src={onePokemon.url_image} alt={onePokemon.pokemon} key={onePokemon.pokemon}/>)
+            }
+          </div>
         </div>
       </div>
     )
