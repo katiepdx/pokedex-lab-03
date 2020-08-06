@@ -25,7 +25,7 @@ export default class App extends React.Component {
           <Switch>
               <Route 
                   //page with search bar/homepage
-                  path="/SearchBar" 
+                  path="/" 
                   exact
                   render={(routerProps) => <SearchBar {...routerProps} />} 
               />
@@ -39,7 +39,6 @@ export default class App extends React.Component {
         </Router>
         
         <HeaderBar/>
-        <SearchBar/>
       </div>
     )
   }
