@@ -1,11 +1,12 @@
 import React from 'react'
 import request from 'superagent';
+import PokemonItem from './PokemonItem.js';
 
 export default class SearchBar extends React.Component {
 //set state 
     state = {
         userSearch: '',
-        isLoading: false, //set to false and update when data is loading
+        isLoading: true, //set to false and update when data is loading
         pokemonStats: []
     }
 
@@ -17,6 +18,7 @@ export default class SearchBar extends React.Component {
         const pokemonData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.userSearch}`)
 
         //update state 
+        console.log(this.state.pokemonStats)
         this.setState({
         //set the pokemonStats to pokemonData in state 
         pokemonStats: pokemonData.body.results,
@@ -24,33 +26,31 @@ export default class SearchBar extends React.Component {
         isLoading: false
     })
 
-    console.log(this.state.pokemonStats)
   }
     render() {
         return (
             <div className="App">
-
-            <section className="body">
-              <div className="userSearchInput">
-                <div className="searchBar">
-                  {/* When user types into searchBar, update the search in state to the value of input */}
-                  <input onChange={(e) => this.setState({ userSearch: e.target.value })} type="text"></input>
-    
-                  {/* When button is clicked, use handleClick function to get the Pokemon */}
-                  <button onClick={this.handleClick}>Get Pokemon</button>
-                </div>
-                <div className="displayPokemon">
-                  {
-                    //if in state page loading is true
-                    this.state.isLoading
-                      //displaying LOADING
-                      ? <h1>LOADING</h1>
-                      //else display the pokemon the user searched for
-                      : this.state.pokemonStats.map(onePokemon => <img src={onePokemon.url_image} alt={onePokemon.pokemon} key={onePokemon.pokemon}/>)
-                  }
-                </div>
-              </div>
-            </section>
+                <section className="body">
+                    <div className="userSearchInput">
+                        <div className="searchBar">
+                        {/* When user types into searchBar, update the search in state to the value of input */}
+                        <input onChange={(e) => this.setState({ userSearch: e.target.value })} type="text"></input>
+            
+                        {/* When button is clicked, use handleClick function to get the Pokemon */}
+                        <button onClick={this.handleClick}>Get Pokemon</button>
+                        </div>
+                        <div className="displayPokemon">
+                        {
+                            //if in state page loading is true
+                            this.state.isLoading
+                            //displaying LOADING
+                            ? <h1>LOADING</h1>
+                            //else display the pokemon the user searched for
+                            : this.state.pokemonStats.map(onePokemon => <PokemonItem pokemon={onePokemon}/>)
+                        }
+                        </div>
+                    </div>
+                </section>
           </div>
         )
     }

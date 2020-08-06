@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   height: 15vh;
+  width: 100vw;
 }
 
 nav {
@@ -13,8 +14,8 @@ nav {
   padding: 1rem;
   border-bottom: cyan 3px solid;
   background-color: #282c34;
-  width: 100vw;
-  padding-right: 20%;
+  width: 97%;
+  padding-right: 3%;
   justify-content: flex-end;
 }
 
