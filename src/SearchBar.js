@@ -6,7 +6,7 @@ export default class SearchBar extends React.Component {
 //set state 
     state = {
         userSearch: '',
-        isLoading: true, //set to false and update when data is loading
+        isLoading: false, //set to false and update when data is loading
         pokemonStats: []
     }
 
