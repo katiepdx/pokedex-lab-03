@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import HeaderBar from './HeaderBar';
-import SearchBar from './SearchBar';
 import request from 'superagent';
 
 export default class App extends React.Component {
