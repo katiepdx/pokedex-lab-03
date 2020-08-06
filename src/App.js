@@ -17,6 +17,7 @@ export default class App extends React.Component {
     return (
       <div>
         {/* Nav bar links */}
+        <HeaderBar/>
         <Router>
           <nav>
               <li><Link to="/">Home</Link></li>
@@ -38,7 +39,6 @@ export default class App extends React.Component {
           </Switch>
         </Router>
         
-        <HeaderBar/>
       </div>
     )
   }

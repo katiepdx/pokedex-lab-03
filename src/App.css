@@ -48,9 +48,8 @@ img {
   width: 150px;
 }
 
-.App {
+.App, .pokemonDetails {
   text-align: center;
-
 }
 
 .App-logo {
