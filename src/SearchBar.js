@@ -1,6 +1,7 @@
 import React from 'react'
 import request from 'superagent';
-import PokemonItem from './PokemonItem.js';
+// import PokemonItem from './PokemonItem.js';
+import PokemonList from './PokemonList.js';
 
 export default class SearchBar extends React.Component {
 //set state 
@@ -8,7 +9,8 @@ export default class SearchBar extends React.Component {
         userSearch: '',
         isLoading: false, //set to false and update when data is loading
         pokemonStats: [],
-        searchFilter: 'pokemon'
+        searchFilter: 'pokemon',
+        currentPage: 1
     }
 
     handleClick = async () => {
@@ -16,7 +18,7 @@ export default class SearchBar extends React.Component {
         //now loading, so change state to true
         this.setState({ isLoading: true })
         //get the data from the API using link - finds userSearch using the searchFilter category
-        const pokemonData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?perPage=1000&${this.state.searchFilter}=${this.state.userSearch}`)
+        const pokemonData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.currentPage}&perPage=20&${this.state.searchFilter}=${this.state.userSearch}`)
 
         //update state 
         console.log(this.state.pokemonStats)
@@ -29,6 +31,18 @@ export default class SearchBar extends React.Component {
     }
     handleSearchFilter = (e) => {
         this.setState({ searchFilter: e.target.value });
+    }
+
+    // handle prev click
+    handlePrevClick = () => {
+        this.setState({ currentPage: Number(this.state.currentPage) - 1})
+        // fetch data
+    }
+
+    // handle next click
+    handleNextClick = () => {
+        this.setState({ currentPage: Number(this.state.currentPage) + 1})
+        // fetch data
     }
 
   
@@ -57,8 +71,8 @@ export default class SearchBar extends React.Component {
                             this.state.isLoading
                             //displaying LOADING
                             ? <h1>LOADING</h1>
-                            //else display the pokemon the user searched for
-                            : this.state.pokemonStats.map(onePokemon => <PokemonItem pokemon={onePokemon}/>)
+                            //else display the pokemon the user searched for with prev/next buttons
+                            : <PokemonList handlePrevClick={this.handlePrevClick} handleNextClick={this.handleNextClick} pokemonStats={this.state.pokemonStats} currentPage={this.state.currentPage}/>
                         }
                         </div>
                     </div>
