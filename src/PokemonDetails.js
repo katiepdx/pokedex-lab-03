@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import request from 'superagent';
-import PokemonList from './PokemonList';
 
 export default class PokemonDetails extends Component {
     //set chosenPokemon state to an empty string
@@ -40,7 +39,6 @@ export default class PokemonDetails extends Component {
                 //display loading message
                 <h1> LOADING </h1>
                 }
-
             </div>
         )
     }

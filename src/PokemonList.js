@@ -8,7 +8,8 @@ export default class PokemonList extends Component {
             pokemonStats,
             handlePrevClick,
             handleNextClick,
-            currentPage
+            currentPage,
+            totalPages
         } = this.props;
 
         return (
@@ -21,7 +22,7 @@ export default class PokemonList extends Component {
                     <button onClick={handlePrevClick}>Prev</button>
                     <button onClick={handleNextClick}>Next</button>
                     {/* Display current page */}
-                    <div>Current Page: {currentPage}</div>
+                    <div>Current Page: {currentPage} of {totalPages}</div>
                 </div>
                 }
                 {
