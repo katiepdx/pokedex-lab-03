@@ -1,10 +1,70 @@
-.App {
+.headerBar {
+  background-color: rgba(0, 0, 0, 0.562);
+  color: rgb(176, 235, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 15vh;
+  width: 100vw;
+}
+
+nav {
+  display: flex;
+  border-bottom: cyan 3px solid;
+  background-color: #282c34;
+  width: 97%;
+  height: min-content;
+  font-size: 2rem;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-right: 3%;
+  text-align: center;
+  justify-content: flex-end;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+}
+
+a:hover {
+  background-color: cadetblue;
+}
+
+.body {
+  display: flex;
+}
+
+.searchBar {
+  float: left;
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+  padding: 30px;
+  height: 100%;
+  background-color: rgb(176, 235, 255);
+  position: static;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+}
+
+.App, .pokemonDetails {
   text-align: center;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+li {
+  list-style-type: none;
+  padding-left: 3%;
 }
 
 @media (prefers-reduced-motion: no-preference) {
