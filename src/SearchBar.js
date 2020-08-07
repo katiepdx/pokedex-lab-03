@@ -16,7 +16,7 @@ export default class SearchBar extends React.Component {
         //now loading, so change state to true
         this.setState({ isLoading: true })
         //get the data from the API using link - finds userSearch using the searchFilter category
-        const pokemonData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchFilter}=${this.state.userSearch}`)
+        const pokemonData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?perPage=1000&${this.state.searchFilter}=${this.state.userSearch}`)
 
         //update state 
         console.log(this.state.pokemonStats)
@@ -45,7 +45,7 @@ export default class SearchBar extends React.Component {
                         <select onChange={this.handleSearchFilter}>
                             <option value="pokemon">Pokemon Name</option>
                             <option value="type">Type</option>
-                            <option value="speed">Speed</option>
+                            <option value="id">Id</option>
                         </select>
 
                         {/* When button is clicked, use handleClick function to get the Pokemon */}
