@@ -14,8 +14,6 @@ export default class PokemonDetails extends Component {
         // get data from API
         const data = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${pokemonName}`)
 
-        //check if data is correct 
-        console.log(data)
         //set results of chosen pokemon to the const chosenPokemon
         const chosenPokemon = data.body.results[0];
 

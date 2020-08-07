@@ -20,8 +20,6 @@ export default class SearchBar extends React.Component {
         //get the data from the API using link - finds userSearch using the searchFilter category
         const pokemonData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.currentPage}&perPage=20&${this.state.searchFilter}=${this.state.userSearch}`)
 
-        //update state 
-        console.log(this.state.pokemonStats)
         this.setState({
         //set the pokemonStats to pokemonData in state 
         pokemonStats: pokemonData.body.results,

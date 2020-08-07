@@ -10,7 +10,6 @@ export default class PokemonList extends Component {
             handleNextClick,
             currentPage
         } = this.props;
-        console.log("Hello", currentPage)
 
         return (
             <div>
@@ -27,7 +26,7 @@ export default class PokemonList extends Component {
                 }
                 {
                     // display searched for pokemon items with img
-                    pokemonStats.map(pokemon => <PokemonItem pokemon={pokemon} />)
+                    pokemonStats.map(pokemon => <PokemonItem pokemon={pokemon} key={pokemon.id} />)
                 }
             </div>
         )
