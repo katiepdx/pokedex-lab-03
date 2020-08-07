@@ -5,12 +5,38 @@ import PokemonList from './PokemonList.js';
 export default class SearchBar extends React.Component {
 //set state 
     state = {
-        userSearch: '',
-        isLoading: false, 
-        pokemonStats: [],
         searchFilter: 'pokemon',
+        userSearch: '',
         currentPage: 1,
-        totalPages: 1
+        totalPages: 1,
+        isLoading: false, 
+        pokemonStats: []
+    }
+    
+    // check search params
+    componentDidMount = async () => {
+        // get search params and set to a const params
+        const params = new URLSearchParams(this.props.location.search);
+
+        // get params and set them to their own const
+        const currentPage = params.get('page')
+        const searchFilter = params.get('filter')
+        const userSearch = params.get('userSearch')
+
+        // if the three params exist, set them to state
+        if(searchFilter && currentPage && userSearch) {
+            // set state 
+            this.setState ({
+                currentPage: currentPage,
+                searchFilter: searchFilter,
+                userSearch: userSearch
+            })
+        }
+        // fetch data using the params
+        await this.makeRequest();
+        console.log('=============================\n')
+        console.log('|| currentPage, searchFilter, userSearch', currentPage, searchFilter, userSearch)
+        console.log('\n=============================')
     }
 
     makeRequest = async () => {
