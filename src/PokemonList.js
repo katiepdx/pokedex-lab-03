@@ -18,9 +18,16 @@ export default class PokemonList extends Component {
                 // add buttons if pokemonStats has multiple pages
                 pokemonStats.length > 0 && 
                 <div>
-                    {/* onClick use handlePrev/NextClick methods */}
-                    <button onClick={handlePrevClick}>Prev</button>
-                    <button onClick={handleNextClick}>Next</button>
+                    {
+                        // adds prev button to all pages but the first
+                        Number(currentPage) !== 1 && <button onClick={handlePrevClick}>Prev</button>
+
+                    }
+                    {
+                        // adds next button for all pages but the totalPages/last page
+                        Number(currentPage) !== Number(totalPages) && <button onClick={handleNextClick}>Next</button>
+
+                    }
                     {/* Display current page */}
                     <div>Current Page: {currentPage} of {totalPages}</div>
                 </div>
