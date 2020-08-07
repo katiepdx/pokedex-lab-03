@@ -7,15 +7,16 @@ export default class SearchBar extends React.Component {
     state = {
         userSearch: '',
         isLoading: false, //set to false and update when data is loading
-        pokemonStats: []
+        pokemonStats: [],
+        searchFilter: 'pokemon'
     }
 
     handleClick = async () => {
         //get API data 
         //now loading, so change state to true
         this.setState({ isLoading: true })
-        //get the data from the API using link - finds userSearch
-        const pokemonData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?pokemon=${this.state.userSearch}`)
+        //get the data from the API using link - finds userSearch using the searchFilter category
+        const pokemonData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?${this.state.searchFilter}=${this.state.userSearch}`)
 
         //update state 
         console.log(this.state.pokemonStats)
@@ -24,9 +25,13 @@ export default class SearchBar extends React.Component {
         pokemonStats: pokemonData.body.results,
         //update isLoading to false now that data is here
         isLoading: false
-    })
+        })
+    }
+    handleSearchFilter = (e) => {
+        this.setState({ searchFilter: e.target.value });
+    }
 
-  }
+  
     render() {
         return (
             <div className="App">
@@ -35,7 +40,14 @@ export default class SearchBar extends React.Component {
                         <div className="searchBar">
                         {/* When user types into searchBar, update the search in state to the value of input */}
                         <input onChange={(e) => this.setState({ userSearch: e.target.value })} type="text"></input>
-            
+
+                        {/* searchFilter dropdown */}
+                        <select onChange={this.handleSearchFilter}>
+                            <option value="pokemon">Pokemon Name</option>
+                            <option value="type">Type</option>
+                            <option value="speed">Speed</option>
+                        </select>
+
                         {/* When button is clicked, use handleClick function to get the Pokemon */}
                         <button onClick={this.handleClick}>Get Pokemon</button>
                         </div>
