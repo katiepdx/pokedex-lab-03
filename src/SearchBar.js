@@ -26,7 +26,7 @@ export default class SearchBar extends React.Component {
         // if the three params exist, set them to state
         if(searchFilter && currentPage && userSearch) {
             // set state 
-            this.setState ({
+            await this.setState ({
                 currentPage: currentPage,
                 searchFilter: searchFilter,
                 userSearch: userSearch
@@ -34,9 +34,6 @@ export default class SearchBar extends React.Component {
         }
         // fetch data using the params
         await this.makeRequest();
-        console.log('=============================\n')
-        console.log('|| currentPage, searchFilter, userSearch', currentPage, searchFilter, userSearch)
-        console.log('\n=============================')
     }
 
     makeRequest = async () => {
@@ -69,22 +66,24 @@ export default class SearchBar extends React.Component {
         await this.makeRequest()
     }
 
-    handleSearchFilter = (e) => {
+    handleSearchFilter = async (e) => {
         this.setState({ searchFilter: e.target.value });
+        await this.makeRequest();
     }
 
     handlePrevClick = async () => {
-        this.setState({ currentPage: Number(this.state.currentPage) - 1})
+        await this.setState({ currentPage: Number(this.state.currentPage) - 1})
         await this.makeRequest();
     }
 
     handleNextClick = async () => {
-        this.setState({ currentPage: Number(this.state.currentPage) + 1})
+        await this.setState({ currentPage: Number(this.state.currentPage) + 1})
         await this.makeRequest();
     }
 
   
     render() {
+        console.log("Current Page", this.state.currentPage);
         return (
             <div className="App">
                 <section className="body">
