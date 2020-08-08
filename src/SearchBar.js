@@ -43,12 +43,32 @@ export default class SearchBar extends React.Component {
         this.setState({ isLoading: true })
         const pokemonData = await request.get(`https://alchemy-pokedex.herokuapp.com/api/pokedex?page=${this.state.currentPage}&perPage=20&${this.state.searchFilter}=${this.state.userSearch}`)
 
-        this.setState({
+        await this.setState({
             pokemonStats: pokemonData.body.results,
             totalPages: Math.ceil(Number(pokemonData.body.count) / Number(20)),
             isLoading: false
         })
+
+        const params = new URLSearchParams(this.props.location.search);
+        
+        // set params to what is in state
+        params.set('page', this.state.currentPage)
+        params.set('filter',this.state.searchFilter)
+        params.set('userSearch', this.state.userSearch)
+
+        this.props.history.push('?' + params.toString());
+
     }
+
+    // set new search to page 1 on click
+    handleGetPokemonClick = async (e) => {
+        e.preventDefault();
+        // reset currentPage to 1 for new search 
+        await this.setState({ currentPage: 1})
+        // fetch data
+        await this.makeRequest()
+    }
+
     handleSearchFilter = (e) => {
         this.setState({ searchFilter: e.target.value });
     }
@@ -71,17 +91,17 @@ export default class SearchBar extends React.Component {
                     <div className="userSearchInput">
                         <div className="searchBar">
                         {/* When user types into searchBar, update the search in state to the value of input */}
-                        <input onChange={(e) => this.setState({ userSearch: e.target.value })} type="text"></input>
+                        <input onChange={(e) => this.setState({ userSearch: e.target.value })} value={this.state.userSearch} type="text"></input>
 
                         {/* searchFilter dropdown */}
-                        <select onChange={this.handleSearchFilter}>
+                        <select onChange={this.handleSearchFilter} value={this.state.searchFilter} >
                             <option value="pokemon">Pokemon Name</option>
                             <option value="type">Type</option>
                             <option value="id">Id</option>
                         </select>
 
                         {/* When button is clicked, use makeRequest function to get the Pokemon */}
-                        <button onClick={this.makeRequest}>Get Pokemon</button>
+                        <button onClick={this.handleGetPokemonClick}>Get Pokemon</button>
                         </div>
                         <div className="displayPokemon">
                         {
@@ -90,7 +110,12 @@ export default class SearchBar extends React.Component {
                             //displaying LOADING
                             ? <h1>LOADING</h1>
                             //else display the pokemon the user searched for with prev/next buttons
-                            : <PokemonList handlePrevClick={this.handlePrevClick} handleNextClick={this.handleNextClick} pokemonStats={this.state.pokemonStats} currentPage={this.state.currentPage} totalPages={this.state.totalPages}/>
+                            : <PokemonList 
+                            handlePrevClick={this.handlePrevClick} 
+                            handleNextClick={this.handleNextClick} 
+                            pokemonStats={this.state.pokemonStats} 
+                            currentPage={this.state.currentPage} 
+                            totalPages={this.state.totalPages}/>
                         }
                         </div>
                     </div>
