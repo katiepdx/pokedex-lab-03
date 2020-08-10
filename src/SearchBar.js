@@ -85,41 +85,38 @@ export default class SearchBar extends React.Component {
     render() {
         console.log("Current Page", this.state.currentPage);
         return (
-            <div className="App">
-                <section className="body">
-                    <div className="userSearchInput">
-                        <div className="searchBar">
-                        {/* When user types into searchBar, update the search in state to the value of input */}
-                        <input onChange={(e) => this.setState({ userSearch: e.target.value })} value={this.state.userSearch} type="text"></input>
+            <section className="body">
+                <div className="searchBar">
+                    {/* When user types into searchBar, update the search in state to the value of input */}
+                    <input onChange={(e) => this.setState({ userSearch: e.target.value })} value={this.state.userSearch} type="text"></input>
 
-                        {/* searchFilter dropdown */}
-                        <select onChange={this.handleSearchFilter} value={this.state.searchFilter} >
-                            <option value="pokemon">Pokemon Name</option>
-                            <option value="type">Type</option>
-                            <option value="id">Id</option>
-                        </select>
+                    {/* searchFilter dropdown */}
+                    <select onChange={this.handleSearchFilter} value={this.state.searchFilter} >
+                        <option value="pokemon">Pokemon Name</option>
+                        <option value="type">Type</option>
+                        <option value="id">Id</option>
+                    </select>
 
-                        {/* When button is clicked, use makeRequest function to get the Pokemon */}
-                        <button onClick={this.handleGetPokemonClick}>Get Pokemon</button>
-                        </div>
-                        <div className="displayPokemon">
-                        {
-                            //if in state page loading is true
-                            this.state.isLoading
-                            //displaying LOADING
-                            ? <h1>LOADING</h1>
-                            //else display the pokemon the user searched for with prev/next buttons
-                            : <PokemonList 
-                            handlePrevClick={this.handlePrevClick} 
-                            handleNextClick={this.handleNextClick} 
-                            pokemonStats={this.state.pokemonStats} 
-                            currentPage={this.state.currentPage} 
-                            totalPages={this.state.totalPages}/>
-                        }
-                        </div>
-                    </div>
-                </section>
-          </div>
+                    {/* When button is clicked, use makeRequest function to get the Pokemon */}
+                    <button onClick={this.handleGetPokemonClick}>Get Pokemon</button>
+                </div>
+
+                <div className="displayPokemon">
+                {
+                    //if in state page loading is true
+                    this.state.isLoading
+                    //displaying LOADING
+                    ? <h1>LOADING</h1>
+                    //else display the pokemon the user searched for with prev/next buttons
+                    : <PokemonList 
+                    handlePrevClick={this.handlePrevClick} 
+                    handleNextClick={this.handleNextClick} 
+                    pokemonStats={this.state.pokemonStats} 
+                    currentPage={this.state.currentPage} 
+                    totalPages={this.state.totalPages}/>
+                }
+                </div>
+            </section>
         )
     }
 }

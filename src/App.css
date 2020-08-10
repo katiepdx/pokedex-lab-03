@@ -29,12 +29,17 @@ a {
   font-size: 1.5rem;
 }
 
-a:hover {
-  background-color: cadetblue;
+.nav-links:hover {
+  font-weight: bolder;
 }
 
 .body {
   display: flex;
+  text-align: center;
+}
+
+.pokemonDetails {
+  text-align: center;
 }
 
 .searchBar {
@@ -43,9 +48,19 @@ a:hover {
   flex-direction: column;
   width: min-content;
   padding: 30px;
-  height: 100vh;
   background-color: rgb(176, 235, 255);
+  min-height: 70vh;
   position: static;
+}
+
+input, select, button {
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: teal;
 }
 
 img {
@@ -53,46 +68,11 @@ img {
   width: 150px;
 }
 
-.App, .pokemonDetails {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.poke-list:hover {
+  border-bottom: 1px solid black;
 }
 
 li {
   list-style-type: none;
   padding-left: 3%;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
