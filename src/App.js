@@ -1,26 +1,45 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router, 
+  Route, 
+  Switch,
+  Link,
+} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import HeaderBar from './HeaderBar.js';
+import SearchBar from './SearchBar.js';
+import PokemonDetails from './PokemonDetails.js';
+
+export default class App extends React.Component {
+  
+  render() {
+    return (
+      <div>
+        {/* Nav bar links */}
+        <HeaderBar/>
+        <Router>
+          <nav>
+              <li className="nav-links"><Link to="/">Home</Link></li>
+              <li className="nav-links"><Link to="/PokemonDetails/">Pokemon Details</Link></li>
+          </nav>
+          <Switch>
+              <Route 
+                  //page with search bar/homepage
+                  path="/" 
+                  exact
+                  render={(routerProps) => <SearchBar {...routerProps} />} 
+              />
+              <Route 
+                  //page with userPokemon PokemonDetails
+                  path="/PokemonDetails/:userPokemon" 
+                  exact
+                  render={(routerProps) => <PokemonDetails {...routerProps} />} 
+              />
+          </Switch>
+        </Router>
+        
+      </div>
+    )
+  }
 }
-
-export default App;
